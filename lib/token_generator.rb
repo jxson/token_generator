@@ -1,7 +1,5 @@
 module TokenGenerator
   def generate_token(size = 12, &validity)
-    constant = "#{self.class.name}#{id}"
-
     begin
       token = ActiveSupport::SecureRandom.hex(64).first(size)
     end while !validity.call(token) if block_given?
